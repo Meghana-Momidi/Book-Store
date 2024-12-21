@@ -54,6 +54,25 @@ router.get("/", async (req, res) => {
         },
       },
     ]);
+    const booksSoldByCategory = await Order.aggregate([
+      { $unwind: "$products" }, 
+      {
+        $lookup: {
+          from: "books", 
+          localField: "products.productId",  
+          foreignField: "_id",
+          as: "bookDetails",
+        },
+      },
+      { $unwind: "$bookDetails" }, 
+      {
+        $group: {
+          _id: "$bookDetails.category", 
+          totalBooksSold: { $sum: "$products.amount" }, 
+        },
+      },
+    ]);
+    
 
     res.status(200).json({
       totalOrders,
@@ -62,6 +81,7 @@ router.get("/", async (req, res) => {
       totalBooks,
       monthlySales,
       totalBooksOrdered: totalBooksOrdered[0]?.totalBooksOrdered,
+      booksSoldByCategory
     });
   } catch (error) {
     console.error("Error fetching admin stats:", error);
