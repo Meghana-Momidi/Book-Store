@@ -58,7 +58,7 @@ const DoughnutChart = ({ data }) => {
       animateRotate: true,
       animateScale: true,
       delay: (context) => {
-        return context.dataIndex * 500;
+        return context.dataIndex * 700;
       },
     },
   };

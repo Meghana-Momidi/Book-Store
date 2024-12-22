@@ -71,7 +71,7 @@ const RevenueChart = () => {
       duration: 1000, 
       easing: "easeInOutQuart", // Easing function
       delay: (context) => {
-        let delay = context.dataIndex * 300; // Delay each bar by 100ms
+        let delay = context.dataIndex * 500; // Delay each bar by 100ms
         return delay;
       },
     },
