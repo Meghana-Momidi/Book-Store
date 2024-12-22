@@ -25,7 +25,7 @@ const Navbar = () => {
 
   const navigation = [
     { name: "Home", href: "/" },
-    ...(admin ? [{ name: "Dashboard", href: "/dashboard" }] : []),
+    { name: "Dashboard", href: "/dashboard" },
     { name: "Orders", href: "/orders" },
     { name: "Cart Page", href: "/cart" },
     ...(cartItems.length >= 1 ? [{ name: "CheckOut", href: "/checkout" }] : []), // Conditionally add "CheckOut"
