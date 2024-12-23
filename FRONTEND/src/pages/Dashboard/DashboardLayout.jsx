@@ -40,7 +40,7 @@ const DashboardContext = () => {
               Book Store
             </span>
           </a>
-          <h2 className="border-y border-gray-400 py-3 text-gray-600 w-full text-center uppercase dark:text-blue-500">menu</h2>
+          <h2 className="border-y border-gray-400 py-3 w-full text-center uppercase text-purple-500 font-bold">menu</h2>
           <div className="flex-grow flex flex-col justify-between text-gray-500 ">
             <nav className="flex flex-col mx-4 my-6 space-y-4 text-center">
               <Link

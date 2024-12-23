@@ -68,12 +68,16 @@ const ManageBooks = () => {
               </div>
               <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                 <select
-                  className="text-black p-2 rounded bg-blue-500 text-white"
+                  className="text-black p-2 rounded-lg bg-blue-500 text-white"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                 >
                   {categories.map((category) => (
-                    <option key={category} value={category} className="bg-gray-300 text-black dark:bg-gray-800 dark:text-white">
+                    <option
+                      key={category}
+                      value={category}
+                      className="bg-gray-300 text-black dark:bg-gray-800 dark:text-white"
+                    >
                       {category}
                     </option>
                   ))}
@@ -116,16 +120,21 @@ const ManageBooks = () => {
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4">
                         ${book.newPrice}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4 space-x-4">
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4 space-x-4 ">
                         <Link
                           to={`/dashboard/edit-book/${book._id}`}
-                          className="font-medium text-indigo-600 hover:text-indigo-700 mr-2 hover:underline underline-offset-2 dark:font-bold"
+                          className="inline-block font-medium py-1 px-4 rounded-full text-white mr-2  dark:font-bold bg-gradient-to-r from-blue-400 via-blue-500
+                          to-indigo-500 
+                          transform transition-all duration-200 hover:scale-110
+"
                         >
-                          Edit
+                           Edit
                         </Link>
                         <button
                           onClick={() => handleDeleteBook(book._id)}
-                          className="font-medium bg-red-500 py-1 px-4 rounded-full text-white mr-2 transform transition-all duration-300 hover:bg-red-400 dark:font-bold"
+                          className="font-medium py-1 px-4 rounded-full text-white mr-2  dark:font-bold bg-gradient-to-r from-pink-500 via-rose-500 to-red-500 hover:bg-opacity-90 hover:scale-110 transition-all duration-200
+
+"
                         >
                           Delete
                         </button>
