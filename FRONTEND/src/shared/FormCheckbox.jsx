@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormCheckbox = ({ id, type, text,register }) => {
+const FormCheckbox = ({ id, type, text, register,  }) => {
   return (
     <div className="mb-4 flex items-center mt-4">
       <label

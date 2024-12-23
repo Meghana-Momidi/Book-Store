@@ -69,9 +69,9 @@ const RevenueChart = () => {
     },
     animation: {
       duration: 1000, 
-      easing: "easeInOutQuart", // Easing function
+      easing: "easeInOutQuart", 
       delay: (context) => {
-        let delay = context.dataIndex * 500; // Delay each bar by 100ms
+        let delay = context.dataIndex * 500; // Delay each bar by 500ms
         return delay;
       },
     },

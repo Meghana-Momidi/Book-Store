@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Book = require("./book-model");
 const HttpError = require("../models/http-error");
- 
-// create a book 
+
+// create a book
 const createBook = async (req, res, next) => {
   try {
     const newBook = new Book(req.body);
@@ -20,7 +20,7 @@ const createBook = async (req, res, next) => {
 const getAllBooks = async (req, res, next) => {
   try {
     const books = await Book.find();
-    res.status(200).json(books);  // Changed to res.json
+    res.status(200).json(books); // Changed to res.json
   } catch (err) {
     console.error("Error fetching all books:", err);
     next(new HttpError("Failed to fetch books. Please try again.", 500));
@@ -36,10 +36,12 @@ const getSingleBookById = async (req, res, next) => {
     if (!book) {
       return next(new HttpError("Book not found.", 404));
     }
-    res.status(200).json(book);  // Changed to res.json
+    res.status(200).json(book); // Changed to res.json
   } catch (err) {
     console.error(`Error fetching book with ID ${bookId}:`, err);
-    next(new HttpError("Failed to fetch the book by id. Please try again.", 500));
+    next(
+      new HttpError("Failed to fetch the book by id. Please try again.", 500)
+    );
   }
 };
 
@@ -57,7 +59,7 @@ const updateBookById = async (req, res, next) => {
     }
     res
       .status(200)
-      .json({ message: "Book updated successfully!", book: updatedBook });  // Changed to res.json
+      .json({ message: "Book updated successfully!", book: updatedBook }); // Changed to res.json
   } catch (err) {
     console.error(`Error updating book with ID ${bookId}:`, err);
     next(new HttpError("Failed to update the book. Please try again.", 500));
@@ -75,7 +77,7 @@ const deleteBookById = async (req, res, next) => {
     }
     res
       .status(200)
-      .json({ message: "Book deleted successfully!", book: deletedBook });  // Changed to res.json
+      .json({ message: "Book deleted successfully!", book: deletedBook }); // Changed to res.json
   } catch (err) {
     console.error(`Error deleting book with ID ${bookId}:`, err);
     next(new HttpError("Failed to delete the book. Please try again.", 500));

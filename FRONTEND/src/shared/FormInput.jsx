@@ -35,6 +35,7 @@ const FormInput = ({
         placeholder={placeholder}
         onChange={onChange}
         step={step}
+        
       />
       {error && (
         <p className="text-red-500 text-sm mt-1">

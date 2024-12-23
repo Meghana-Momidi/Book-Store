@@ -28,7 +28,7 @@ router.use(verifyAdminToken); // routes defined after it will require authentica
 router.post("/create-book", createBookValidator, validateBook, createBook);
 
 // update a book
-router.put("/edit/:bid", updateBookValidator, validateBook, updateBookById);
+router.patch("/edit/:bid", updateBookValidator, validateBook, updateBookById);
 
 // delete a book
 router.delete("/:bid", deleteBookById);

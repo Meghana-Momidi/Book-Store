@@ -6,7 +6,6 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
   prepareHeaders: (headers) => {
     const token = localStorage.getItem("adminToken");
-    console.log("Token:", token);
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
@@ -38,7 +37,7 @@ const booksApi = createApi({
     updateBook: builder.mutation({
       query: ({ id, ...rest }) => ({
         url: `/edit/${id}`,
-        method: "PUT",
+        method: "PATCH",
         body: rest,
         headers: {
           "Content-Type": "application/json",

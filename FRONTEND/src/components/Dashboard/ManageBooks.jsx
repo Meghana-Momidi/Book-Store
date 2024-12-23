@@ -23,6 +23,8 @@ const ManageBooks = () => {
   console.log(books);
 
   const categories = ["All", ...new Set(books?.map((book) => book.category))];
+  console.log(categories);
+  
   // Handle deleting a book
   const handleDeleteBook = async (id) => {
     Swal.fire({

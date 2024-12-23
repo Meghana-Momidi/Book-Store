@@ -8,6 +8,7 @@ const categories = [
   "Fiction",
   "Horror",
   "Adventure",
+  "Marketing"
 ];
 
 const BestSellers = ({ books, id, isLoading }) => {
