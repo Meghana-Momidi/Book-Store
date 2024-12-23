@@ -32,7 +32,7 @@ const BestSellers = ({ books, id, isLoading }) => {
         className="font-headings text-4xl mx-20 mb-5 text-center"
       >
         <i>Best Sellers</i>
-      </h2>
+      </h2> 
       <div
         className="w-20 h-px bg-black mx-auto mb-10 dark:bg-white"
         aria-hidden="true"

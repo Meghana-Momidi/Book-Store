@@ -11,7 +11,7 @@ const UserOrdersDisplay = ({ data }) => {
           {data?.usersWithOrders.map((user) => {
             const { _id: userName, orders } = user;
             return (
-              <li className="flex items-center">
+              <li  className="flex items-center">
                 <div className="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                   <img
                     src={`https://randomuser.me/api/portraits/${

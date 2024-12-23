@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import FormInput from "../../shared/FormInput";
 import FormSelect from "../../shared/FormSelect";
 import { useAddBookMutation } from "../../features/books/booksApi";
+import FormCheckbox from "../../shared/FormCheckbox";
 
 const AddBook = () => {
   const {
@@ -17,10 +18,15 @@ const AddBook = () => {
   const [imageFileName, setimageFileName] = useState("");
 
   const onSubmit = async (data) => {
+    console.log(data);
+
     const newBookData = {
       ...data,
       coverImage: imageFileName,
+      trending: data.trending || false,
     };
+    console.log(newBookData);
+
     try {
       await addBook(newBookData).unwrap();
       Swal.fire({
@@ -49,8 +55,10 @@ const AddBook = () => {
     }
   };
   return (
-    <div className="max-w-lg   mx-auto md:p-6 p-3 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Book</h2>
+    <div className="max-w-lg mx-auto md:p-6 p-3 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:dark-text">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4 dark:text-white">
+        Add New Book
+      </h2>
 
       {/* Form starts here */}
       <form onSubmit={handleSubmit(onSubmit)} className="">
@@ -63,7 +71,6 @@ const AddBook = () => {
           register={register}
         />
 
-        {/* Reusable Textarea for Description */}
         <FormInput
           id="description"
           label="Description"
@@ -73,7 +80,6 @@ const AddBook = () => {
           register={register}
         />
 
-        {/* Reusable Select Field for Category */}
         <FormSelect
           label="Category"
           name="category"
@@ -84,7 +90,6 @@ const AddBook = () => {
             { value: "fiction", label: "Fiction" },
             { value: "horror", label: "Horror" },
             { value: "adventure", label: "Adventure" },
-            // Add more options as needed
           ]}
           register={register}
         />
@@ -97,6 +102,7 @@ const AddBook = () => {
           type="number"
           placeholder="Old Price"
           register={register}
+          step="0.01"
         />
 
         {/* New Price */}
@@ -107,18 +113,27 @@ const AddBook = () => {
           type="number"
           placeholder="New Price"
           register={register}
+          step="0.01"
+        />
+        {/* trending */}
+        <FormCheckbox
+          id="trending"
+          type="checkbox"
+          name="trending"
+          register={register}
+          text="Trending"
         />
 
         {/* Cover Image Upload */}
-        <div className="mb-4">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
+        <div className="mb-4 mt-2">
+          <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-white py-4">
             Cover Image
           </label>
           <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            className="mb-2 w-full"
+            className="mb-2 w-full dark:text-gray-300"
           />
           {imageFileName && (
             <p className="text-sm text-gray-500">Selected: {imageFileName}</p>
@@ -128,7 +143,7 @@ const AddBook = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2 bg-green-500 text-white font-bold rounded-md"
+          className="w-full py-2 bg-purple-500 text-white font-bold rounded-md"
         >
           {isLoading ? (
             <span className="">Adding.. </span>

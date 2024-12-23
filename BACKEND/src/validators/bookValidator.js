@@ -6,7 +6,7 @@ const createBookValidator = [
     .not() 
     .isEmpty()
     .withMessage("Title is required")
-    .isLength({ min: 3, max: 50 })
+    .isLength({ min: 1, max: 50 })
     .withMessage("Title must be between 3 and 100 characters"),
 
   check("description")

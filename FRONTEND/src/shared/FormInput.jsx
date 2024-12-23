@@ -12,6 +12,7 @@ const FormInput = ({
   minLength,
   maxLength,
   onChange,
+  step
 }) => {
   return (
     <div>
@@ -33,6 +34,7 @@ const FormInput = ({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        step={step}
       />
       {error && (
         <p className="text-red-500 text-sm mt-1">

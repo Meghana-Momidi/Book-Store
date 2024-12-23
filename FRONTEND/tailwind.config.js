@@ -7,7 +7,7 @@ export default {
         primary: "#FFCE1A",
         secondary: "#0D0842",
         background: "#F3F3F3",
-        favourite: "#FF5841",
+        favourite: "#FF5841", 
         offerColor: "#e42b26",
         // Dark mode colors
         "dark-bg": "#121212", // Dark background for dark mode

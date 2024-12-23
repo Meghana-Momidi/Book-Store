@@ -5,7 +5,8 @@ const baseQuery = fetchBaseQuery({
   baseUrl: `${getBaseURL()}/api/books`,
   credentials: "include",
   prepareHeaders: (headers) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
+    console.log("Token:", token);
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }

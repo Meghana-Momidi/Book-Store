@@ -93,7 +93,7 @@ const Dashboard = () => {
               {data?.trendingBooks}
             </span>
             <span className="inline-block text-xl font-semibold pl-2">
-              ( {(data?.trendingBooks / data?.totalBooks) * 100} %)
+              ( {(Math.floor((data?.trendingBooks / data?.totalBooks) * 100))} %)
             </span>
             <span className="block xl:mt-1">Trending Books</span>
           </div>
