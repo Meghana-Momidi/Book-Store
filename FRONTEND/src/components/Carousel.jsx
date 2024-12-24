@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import image1 from "../assets/carousel-images/image-1.jpg";
+import image1 from "../assets/carousel-images/image-1.webp";
 import image2 from "../assets/carousel-images/image-2.jpg";
-import image3 from "../assets/carousel-images/image-3.jpeg";
-import image4 from "../assets/carousel-images/image-4.jpg"; 
+import image3 from "../assets/carousel-images/image-3.jpg";
+import image4 from "../assets/carousel-images/image-4.png"; 
 import image5 from "../assets/carousel-images/image-5.jpg";
 import image6 from "../assets/carousel-images/image-6.jpg";
 

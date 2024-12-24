@@ -47,7 +47,7 @@ const EditBook = () => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33", 
-        confirmButtonText: "Yes, It's Okay!",
+        confirmButtonText: "Okay!",
       }).then(() => navigate("/dashboard/manage-books"));
       reset();
       setimageFileName("");

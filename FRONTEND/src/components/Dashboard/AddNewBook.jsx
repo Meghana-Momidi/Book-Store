@@ -36,7 +36,7 @@ const AddBook = () => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, It's Okay!",
+        confirmButtonText: "Okay!",
       });
       reset();
       setimageFileName("");
@@ -92,7 +92,7 @@ const AddBook = () => {
           options={[
             { value: "", label: "Choose A Category" },
             { value: "business", label: "Business" },
-            { value: "technology", label: "Technology" },
+            { value: "marketing", label: "Marketing" },
             { value: "fiction", label: "Fiction" },
             { value: "horror", label: "Horror" },
             { value: "adventure", label: "Adventure" },

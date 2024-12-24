@@ -47,7 +47,7 @@ const BooksList = ({ books }) => {
 
       {/* Previous Button */}
       <button
-        className={`absolute top-1/2 -left-16  pointer-cursor mx-12 font-semibold text-xl ${
+        className={`absolute top-1/2 -left-24  pointer-cursor mx-12 font-semibold text-xl ${
           currentIndex === 0 ? "opacity-0" : "opacity-100"
         }`}
         disabled={currentIndex === 0}
@@ -60,7 +60,7 @@ const BooksList = ({ books }) => {
 
       {/* Next Button */}
       <button
-        className={`absolute top-1/2 -right-16  lg:-right-1 pointer-cursor mx-12 font-semibold text-xl ${
+        className={`absolute top-1/2 -right-24  lg:-right-10 pointer-cursor mx-12 font-semibold text-xl ${
           currentIndex + booksToDisplay >= books.length
             ? "opacity-0"
             : "opacity-100"
