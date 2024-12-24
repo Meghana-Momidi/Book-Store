@@ -17,11 +17,14 @@ const port = process.env.PORT || 3000;
 app.use(express.json()); // Parse JSON requests
 app.use(
   cors({
-    // Handle CORS requests
-    origin: ["http://localhost:5173"],
+    origin: [
+      "http://localhost:5173", // For local development
+      "https://book-store-five-snowy.vercel.app" // For production on Vercel
+    ],
     credentials: true,
   })
 );
+
 app.use(morgan("dev")); // Log HTTP requests in a concise, colored format (for development)
 
 // Route setup
