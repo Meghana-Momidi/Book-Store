@@ -11,20 +11,21 @@ const adminStats = require("./src/stats/admin-stats");
 const HttpError = require("./src/models/http-error");
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Middleware setup
-app.use(express.json());
-app.use(morgan("dev")); // Log HTTP requests
-
+app.use(express.json()); // Parse JSON requests
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // Local dev URL
-      "https://book-store-8sijy0voy-meghana-momidis-projects.vercel.app", // Production URL
+      "http://localhost:5173", // For local development
+      "https://book-store-ivory-mu.vercel.app" // For production on Vercel
     ],
     credentials: true,
   })
 );
+
+app.use(morgan("dev")); // Log HTTP requests in a concise, colored format (for development)
 
 // Route setup
 app.use("/api/books", bookRoutes);
@@ -37,13 +38,15 @@ app.get("/", (req, res) => {
   res.send("Book Store server is running!");
 });
 
-// Error handling
+// Error handling middleware for undefined routes and errors
 app.use((error, req, res, next) => {
+  // If it's a custom HttpError, use its send method to send the error response
   if (error instanceof HttpError) {
     return error.send(res);
   }
 
-  console.error(error);
+  // Default error handler if it's not a custom HttpError
+  console.error(error); // Log the error to the console
   res.status(500).json({
     message: "An unexpected error occurred. Please try again later.",
     error: error.message,
@@ -60,15 +63,24 @@ async function connectToDatabase() {
     console.log("Connected to MongoDB!");
   } catch (err) {
     console.error("Failed to connect to MongoDB:", err);
-    process.exit(1);
+    process.exit(1); // Exit process on failure
   }
 }
 
-// Run the serverless function handler instead of app.listen
+// Server start function
 async function startServer() {
   await connectToDatabase();
+  app.listen(port, () => {
+    console.log(`Server is listening on port ${port}...`);
+  });
 }
 
+// Start the server
 startServer();
 
-module.exports = app; // This is required for serverless deployments on Vercel
+// Graceful shutdown on process termination
+process.on("SIGINT", async () => {
+  console.log("Shutting down server...");
+  await mongoose.disconnect(); // Disconnect from MongoDB
+  process.exit(0); // Exit the process
+});
