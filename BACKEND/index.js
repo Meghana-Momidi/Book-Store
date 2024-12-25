@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173", // For local development
-      "https://book-store-jubx.vercel.app/" // For production on Vercel
+      "https://book-store-8sijy0voy-meghana-momidis-projects.vercel.app/" // For production on Vercel
     ],
     credentials: true,
   })
