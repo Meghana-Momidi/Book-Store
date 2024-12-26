@@ -37,11 +37,26 @@ const Dashboard = () => {
 
   return (
     <>
-      <section className="grid md:grid-cols-2 xl:grid-cols-6 gap-6">
-        <div className="flex xl:flex-col items-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center bg-gradient-to-r from-blue-400 to-green-400 text-white ">
-          <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6 xl:mr-0">
+      <section
+        className="grid md:grid-cols-2 xl:grid-cols-6 gap-6"
+        aria-labelledby="stats-section"
+      >
+        <h2 id="stats-section" className="sr-only">
+          Statistics Overview
+        </h2>
+        {/* Total products */}
+        <div
+          className="flex xl:flex-col items-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center bg-gradient-to-r from-blue-400 to-green-400 text-white "
+          role="region"
+          aria-labelledby="products-stat"
+        >
+          <div
+            className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6 xl:mr-0"
+            aria-hidden="true"
+            role="img"
+          >
             <svg
-              aria-hidden="true"
+              aria-label="Books icon"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -55,19 +70,29 @@ const Dashboard = () => {
               />
             </svg>
           </div>
-          <div className="dark:dark-text xl:mt-4">
-            <span className="block text-2xl font-bold">{data?.totalBooks}</span>
-            <span className="block  xl:mt-1">Products</span>
+          <div id="products-stat" className="dark:dark-text xl:mt-4">
+            <span className="block text-2xl font-bold" aria-live="polite">
+              {data?.totalBooks}
+            </span>
+            <span className="block xl:mt-1">Products</span>
           </div>
         </div>
-        <div className="flex xl:flex-col items-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center bg-gradient-to-r from-blue-500 to-purple-500 text-white ">
-          <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-green-600 bg-green-100 rounded-full mr-6 xl:mr-0">
+        {/* Total sales */}
+        <div
+          className="flex xl:flex-col items-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+          role="region"
+          aria-labelledby="total-sales-title"
+        >
+          <div
+            className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-green-600 bg-green-100 rounded-full mr-6 xl:mr-0"
+            aria-label="Graph icon indicating total sales"
+          >
             <svg
-              aria-hidden="true"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
               className="h-6 w-6"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -78,68 +103,144 @@ const Dashboard = () => {
             </svg>
           </div>
           <div className="xl:mt-4">
-            <span className="block text-2xl font-bold">
+            <span
+              id="total-sales-title"
+              className="block text-2xl font-bold"
+              aria-live="polite"
+            >
               ${data?.totalSales}
             </span>
-            <span className="block  xl:mt-1">Total Sales</span>
+            <span className="block xl:mt-1">Total Sales</span>
           </div>
         </div>
-        <div className="flex xl:flex-col items-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center bg-gradient-to-r from-pink-500 to-orange-400 text-white">
-          <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-red-600 bg-red-100 rounded-full mr-6">
-            <MdTrendingUp className="h-6 w-6" />
+        {/* Trending books */}
+        <div
+          className="flex xl:flex-col items-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center bg-gradient-to-r from-pink-500 to-orange-400 text-white"
+          role="region"
+          aria-labelledby="trending-books-title"
+        >
+          <div
+            className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-red-600 bg-red-100 rounded-full mr-6"
+            role="img"
+            aria-label="Icon representing trending books"
+          >
+            <MdTrendingUp className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="xl:mt-4">
-            <span className="inline-block text-2xl font-bold">
+            <span
+              id="trending-books-title"
+              className="inline-block text-2xl font-bold"
+              aria-live="polite"
+            >
               {data?.trendingBooks}
             </span>
-            <span className="inline-block text-xl font-semibold pl-2">
-              ( {(Math.floor((data?.trendingBooks / data?.totalBooks) * 100))} %)
+            <span
+              className="inline-block text-xl font-semibold pl-2"
+              aria-label={`Percentage of trending books: ${Math.floor(
+                (data?.trendingBooks / data?.totalBooks) * 100
+              )} percent`}
+            >
+              ( {Math.floor((data?.trendingBooks / data?.totalBooks) * 100)}% )
             </span>
             <span className="block xl:mt-1">Trending Books</span>
           </div>
         </div>
-        <div className="flex xl:flex-col items-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center bg-gradient-to-r from-purple-400 to-pink-500 text-white">
-          <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6 xl:mr-0">
-            <MdIncompleteCircle className="size-6" />
+        {/* Total orders */}
+        <div
+          className="flex xl:flex-col items-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center bg-gradient-to-r from-purple-400 to-pink-500 text-white"
+          role="region"
+          aria-labelledby="total-orders-title"
+        >
+          <div
+            className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6 xl:mr-0"
+            role="img"
+            aria-label="Icon representing total orders"
+          >
+            <MdIncompleteCircle className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="xl:mt-4">
-            <span className="block text-2xl font-bold">
+            <span
+              id="total-orders-title"
+              className="block text-2xl font-bold"
+              aria-live="polite"
+            >
               {data?.totalOrders}
             </span>
             <span className="block xl:mt-1">Total Orders</span>
           </div>
         </div>
-        <div className="flex xl:flex-col xl:col-span-2 md:col-span-2 items-center justify-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center dark:text-white text-center">
-          <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-orange-600 bg-yellow-100 rounded-full mr-6 xl:mr-0">
-            <GiBookshelf className="h-6 w-6" />
+        {/* Books Sold */}
+        <div
+          className="flex xl:flex-col xl:col-span-2 md:col-span-2 items-center justify-center p-8 bg-white shadow rounded-lg dark:bg-gray-800 xl:text-center dark:text-white text-center"
+          role="region"
+          aria-labelledby="books-sold-title"
+        >
+          <div
+            className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-orange-600 bg-yellow-100 rounded-full mr-6 xl:mr-0"
+            role="img"
+            aria-label="Icon representing books sold"
+          >
+            <GiBookshelf className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="xl:mt-4">
-            <span className="block text-2xl font-bold">
+            <span
+              id="books-sold-title"
+              className="block text-2xl font-bold"
+              aria-live="polite"
+            >
               {data?.totalBooksOrdered}
             </span>
             <span className="block xl:mt-1">Books Sold</span>
           </div>
         </div>
       </section>
-      <section className="grid md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-2 xl:grid-flow-col gap-6">
-        {/* revenue chart for no. of orders per month */}
-        <div className="flex flex-col md:col-span-2 md:row-span-3 bg-white shadow rounded-lg dark:bg-gray-800">
-          <div className="px-6 py-5 font-semibold border-b border-gray-100 dark:text-gray-300">
+      <section
+        className="grid md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-2 xl:grid-flow-col gap-6"
+        aria-labelledby="dashboard-overview"
+      >
+        <h2 id="dashboard-overview" className="sr-only">
+          Dashboard Overview
+        </h2>
+
+        {/* Revenue chart for number of orders per month */}
+        <div
+          className="flex flex-col md:col-span-2 md:row-span-3 bg-white shadow rounded-lg dark:bg-gray-800"
+          role="region"
+          aria-labelledby="orders-per-month"
+        >
+          <div
+            id="orders-per-month"
+            className="px-6 py-5 font-semibold border-b border-gray-100 dark:text-gray-300"
+          >
             The number of orders per month
           </div>
           <div className="p-4 flex-grow dark:bg-gray-800">
-            <div className="flex items-center justify-center h-full px-4 py-16 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md dark:bg-gray-800">
+            <div
+              className="flex items-center justify-center h-full px-4 py-16 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md dark:bg-gray-800"
+              aria-live="polite"
+            >
               <RevenueChart />
             </div>
           </div>
         </div>
-        {/* doughnut chart for books sold by category */}
-        <div className="flex flex-col row-span-3 bg-white shadow rounded-lg dark:bg-gray-800">
-          <div className="px-6 py-5 font-semibold border-b border-gray-100 dark:text-gray-300 text-center">
+
+        {/* Doughnut chart for books sold by category */}
+        <div
+          className="flex flex-col row-span-3 bg-white shadow rounded-lg dark:bg-gray-800"
+          role="region"
+          aria-labelledby="books-by-category"
+        >
+          <div
+            id="books-by-category"
+            className="px-6 py-5 font-semibold border-b border-gray-100 dark:text-gray-300 text-center"
+          >
             Books sold by category
           </div>
           <div className="p-4 flex-grow dark:bg-gray-800">
-            <div className="flex items-center justify-center h-full px-4 py-24 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md dark:bg-gray-800">
+            <div
+              className="flex items-center justify-center h-full px-4 py-24 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md dark:bg-gray-800"
+              aria-live="polite"
+            >
               <div className="w-full h-full flex justify-center items-center">
                 <DoughnutChart data={data?.booksSoldByCategory || []} />
               </div>
@@ -148,7 +249,14 @@ const Dashboard = () => {
         </div>
 
         {/* Display users with most orders */}
-        <div className="row-span-3 bg-white shadow rounded-lg dark:bg-gray-800">
+        <div
+          className="row-span-3 bg-white shadow rounded-lg dark:bg-gray-800"
+          role="region"
+          aria-labelledby="most-orders-users"
+        >
+          <h3 id="most-orders-users" className="sr-only">
+            Users with the most orders
+          </h3>
           <UserOrdersDisplay data={data} />
         </div>
       </section>
