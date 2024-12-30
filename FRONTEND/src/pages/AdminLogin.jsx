@@ -3,8 +3,9 @@ import FormInput from "../shared/FormInput";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import getBaseURL from "../utils/baseURL"; 
+import getBaseURL from "../utils/baseURL";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const AdminLogin = () => {
   const [message, setMessage] = useState("");
@@ -37,15 +38,16 @@ const AdminLogin = () => {
 
       if (auth.token) {
         localStorage.setItem("adminToken", auth.token);
+        // Decode the token to get the expiration time
+        const decodedToken = jwtDecode(auth.token);
+        const expirationTime = decodedToken.exp * 1000;
+        console.log(decodedToken);
+        console.log(expirationTime);
+
+        localStorage.setItem("adminTokenExpiration", expirationTime);
         localStorage.setItem("admin", JSON.stringify(auth.user));
         localStorage.removeItem("currentUser");
         localStorage.setItem("currentUser", JSON.stringify(auth.user));
-        setTimeout(() => {
-          localStorage.removeItem("adminToken");
-          localStorage.removeItem("admin");
-          alert("Session expired. Please login again.");
-          navigate("/admin");
-        }, 3600 * 1000);
       }
 
       Swal.fire({

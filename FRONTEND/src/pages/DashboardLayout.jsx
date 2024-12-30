@@ -7,7 +7,7 @@ import { BsSunFill, BsMoonFill } from "react-icons/bs";
 import { FiSun} from "react-icons/fi";
 import { PiMoon } from "react-icons/pi";
 import { HiShoppingBag } from "react-icons/hi2";
-import { ThemeProvider, useThemeContext } from "../../context/ThemeContext";
+import { ThemeProvider, useThemeContext } from "../context/ThemeContext";
 import { CssBaseline } from "@mui/material";
 
 const DashboardContext = () => {

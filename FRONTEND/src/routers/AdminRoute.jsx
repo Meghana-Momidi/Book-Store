@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { checkTokenExpiration } from "../utils/tokenExpiration";
 
 const AdminRoute = ({ children }) => {
-  const token = localStorage.getItem("adminToken");
+  const [isTokenValid, setIsTokenValid] = useState(true);
+  const expirationTime = localStorage.getItem("adminTokenExpiration");
+  const admin = JSON.parse(localStorage.getItem("admin"));
 
-  if (!token) return <Navigate to="/admin" />;
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (!checkTokenExpiration()) {
+        setIsTokenValid(false);
+      }
+    }, Number(expirationTime) - Date.now()); // Set timeout based on token expiration
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  if (!isTokenValid || !admin) {
+    return <Navigate to="/admin" />;
+  }
 
   return children;
 };

@@ -16,7 +16,7 @@ import CheckoutRoute from "./CheckoutRoute";
 import Dashboard from "../components/Dashboard/Dashboard";
 import AdminRoute from "./AdminRoute";
 import AdminLogin from "../pages/AdminLogin";
-import DashboardLayout from "../pages/Dashboard/DashboardLayout";
+import DashboardLayout from "../pages/DashboardLayout";
 import ManageBooks from "../components/Dashboard/ManageBooks";
 import AddNewBook from "../components/Dashboard/AddNewBook";
 import EditBook from "../components/Dashboard/EditBook";

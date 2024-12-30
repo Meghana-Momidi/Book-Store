@@ -100,6 +100,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("currentUser"); // Remove user from localStorage on logout
     localStorage.removeItem("theme");
     localStorage.removeItem("adminToken");
+    localStorage.removeItem("admin");
+    localStorage.removeItem("adminTokenExpiration");
   };
 
   // Manage user state
