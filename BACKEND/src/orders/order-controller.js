@@ -22,7 +22,9 @@ const getOrdersByEmail = async (req, res, next) => {
     console.log("Fetching orders for email:", email); // Log to check incoming request
 
     // Find orders by email and populate the `productId` within `products`
-    const orders = await Order.find({ email }).populate("products.productId");
+    const orders = await Order.find({ email })
+      .populate("products.productId")
+      .sort({ createdAt: -1 });
 
     console.log("Fetched orders:", orders); // Log the populated orders
 
@@ -45,13 +47,12 @@ const getOrdersByEmail = async (req, res, next) => {
       createdAt: order.createdAt,
       updatedAt: order.updatedAt,
     }));
- 
+
     res.status(200).json(formattedOrders);
   } catch (error) {
     console.error("Error fetching orders", error);
     next(new HttpError("Failed to fetch orders. Please try again.", 500));
   }
 };
-
 
 module.exports = { createOrder, getOrdersByEmail };
