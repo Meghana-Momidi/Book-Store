@@ -6,9 +6,9 @@ import { MdIncompleteCircle } from "react-icons/md";
 import { GiBookshelf } from "react-icons/gi";
 import { MdTrendingUp } from "react-icons/md";
 
-import RevenueChart from "../../components/Dashboard/RevenueChart";
-import DoughnutChart from "../../components/Dashboard/DoughnutChart";
-import UserOrdersDisplay from "../../components/Dashboard/UserOrdersDisplay";
+import RevenueChart from "./RevenueChart";
+import DoughnutChart from "./DoughnutChart";
+import UserOrdersDisplay from "./UserOrdersDisplay";
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);

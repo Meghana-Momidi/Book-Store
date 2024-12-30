@@ -18,14 +18,11 @@ const AddBook = () => {
   const [imageFileName, setimageFileName] = useState("");
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     const newBookData = {
       ...data,
       coverImage: imageFileName,
       trending: data.trending || false,
     };
-    console.log(newBookData);
 
     try {
       await addBook(newBookData).unwrap();
@@ -60,21 +57,30 @@ const AddBook = () => {
       setimageFileName(file.name);
     }
   };
+
   return (
-    <div className="max-w-lg mx-auto md:p-6 p-3 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:dark-text">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4 dark:text-white">
+    <div
+      className="max-w-lg mx-auto md:p-6 p-3 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-white"
+      role="form"
+      aria-labelledby="form-title"
+    >
+      <h2
+        id="form-title"
+        className="text-2xl font-bold text-gray-800 mb-4 dark:text-white"
+      >
         Add New Book
       </h2>
 
       {/* Form starts here */}
-      <form onSubmit={handleSubmit(onSubmit)} className="">
-        {/* Reusable Input Field for Title */}
+      <form onSubmit={handleSubmit(onSubmit)} aria-live="polite">
         <FormInput
           id="title"
           label="Title"
           name="title"
           placeholder="Enter book title"
           register={register}
+          aria-required="true"
+          aria-invalid={!!errors.title}
         />
 
         <FormInput
@@ -84,6 +90,8 @@ const AddBook = () => {
           placeholder="Enter book description"
           type="textarea"
           register={register}
+          aria-required="true"
+          aria-invalid={!!errors.description}
         />
 
         <FormSelect
@@ -98,9 +106,10 @@ const AddBook = () => {
             { value: "adventure", label: "Adventure" },
           ]}
           register={register}
+          aria-required="true"
+          aria-invalid={!!errors.category}
         />
 
-        {/* Old Price */}
         <FormInput
           id="oldPrice"
           label="Old Price"
@@ -109,9 +118,10 @@ const AddBook = () => {
           placeholder="Old Price"
           register={register}
           step="0.01"
+          aria-required="true"
+          aria-invalid={!!errors.oldPrice}
         />
 
-        {/* New Price */}
         <FormInput
           id="newPrice"
           label="New Price"
@@ -120,42 +130,48 @@ const AddBook = () => {
           placeholder="New Price"
           register={register}
           step="0.01"
+          aria-required="true"
+          aria-invalid={!!errors.newPrice}
         />
-        {/* trending */}
+
         <FormCheckbox
           id="trending"
           type="checkbox"
           name="trending"
           register={register}
           text="Trending"
+          aria-checked="false"
+          aria-label="Mark as trending"
         />
 
-        {/* Cover Image Upload */}
         <div className="mb-4 mt-2">
-          <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-white py-4">
+          <label
+            htmlFor="coverImage"
+            className="block text-sm font-semibold text-gray-700 mb-2 dark:text-white"
+          >
             Cover Image
           </label>
           <input
+            id="coverImage"
             type="file"
             accept="image/*"
             onChange={handleFileChange}
             className="mb-2 w-full dark:text-gray-300"
+            aria-label="Upload cover image"
           />
           {imageFileName && (
-            <p className="text-sm text-gray-500">Selected: {imageFileName}</p>
+            <p className="text-sm text-gray-500" aria-live="polite">
+              Selected: {imageFileName}
+            </p>
           )}
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2 bg-purple-500 text-white font-bold rounded-md"
+          className="w-full py-2 bg-purple-500 text-white font-bold rounded-md focus:ring focus:ring-purple-300"
+          aria-busy={isLoading}
         >
-          {isLoading ? (
-            <span className="">Adding.. </span>
-          ) : (
-            <span>Add Book</span>
-          )}
+          {isLoading ? "Adding..." : "Add Book"}
         </button>
       </form>
     </div>

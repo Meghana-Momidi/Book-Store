@@ -13,7 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import Orders from "../pages/Orders";
 import OrderConfirmationPage from "../pages/OrderConfirmationPage";
 import CheckoutRoute from "./CheckoutRoute";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import Dashboard from "../components/Dashboard/Dashboard";
 import AdminRoute from "./AdminRoute";
 import AdminLogin from "../pages/AdminLogin";
 import DashboardLayout from "../pages/Dashboard/DashboardLayout";
