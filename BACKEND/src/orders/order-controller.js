@@ -19,7 +19,7 @@ const createOrder = async (req, res, next) => {
 const getOrdersByEmail = async (req, res, next) => {
   try {
     const { email } = req.params;
-    console.log("Fetching orders for email:", email); // Log to check incoming request
+    console.log("Fetching orders for email:", email); 
 
     // Find orders by email and populate the `productId` within `products`
     const orders = await Order.find({ email })
