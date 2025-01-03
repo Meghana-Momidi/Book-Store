@@ -12,6 +12,7 @@ This project is a **full-stack e-commerce bookstore application** designed to pr
 - 🔐 **User Authentication**: Secure login and signup using **Firebase authentication** and **JWT Web Tokens** for secure access.  
 - 🛒 **Seamless Shopping**: Add books to a cart, view details, and proceed to checkout.  
 - ♿ **Accessibility**: Ensured a user-friendly experience for everyone, including users with disabilities.  
+- 🌗 **Theme Toggle**: Switch between **dark** and **light** modes for a personalized user experience using **Material UI**.
 
 ### **🛠️ Admin Features**  
 - 📊 **Admin Dashboard**: Access a dynamic dashboard for data visualization using **Chart.js**.  
@@ -38,3 +39,9 @@ This project is a **full-stack e-commerce bookstore application** designed to pr
 - 🔒 **Firebase**: Implemented secure authentication and authorization.  
 - 📈 **Chart.js**: Enabled dynamic and interactive data visualizations.  
 - 🎉 **SweetAlert**: Enhanced user experience with stylish and interactive alert boxes.  
+
+---
+
+## **🌗 Theme Toggle Functionality**
+
+This project includes a **dark/light mode toggle** using **Material UI's ThemeProvider**.
